@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import * as config from 'config';
 import { Logger } from './util/logger.util';
 import { IConfigOption } from './interface/config.interface';
+import { autoFindConfigDir } from './auto_find';
 
 const NAMESPACE = 'main';
 
@@ -14,10 +15,7 @@ export class Config {
         if (projectId == null) throw Error('Config: 缺乏指定项目ID, 错误的构造方式');
         this.projectId = projectId;
         this.options = options;
-
-        const defaultLocation = config.util.loadFileConfigs('./');
-        const upwardLocation = config.util.loadFileConfigs('../');
-        config.util.setModuleDefaults('main', !_.isEmpty(defaultLocation) ? defaultLocation : upwardLocation);
+        autoFindConfigDir(config);
     }
 
     private getEnv(key: string): string | undefined {
