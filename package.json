@@ -1,11 +1,13 @@
 {
   "name": "hrm-common-config",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "通用型Config读取",
   "main": "index.js",
   "scripts": {
     "publish": "rm -r dist/ && tsc && cp ./package.json ./dist/ && npm publish dist",
     "build": "tsc",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "format": "prettier --write \"lib/**/*.ts\"",
     "test": "tsc && ava --color"
   },
   "tags": [
@@ -18,14 +20,16 @@
     "@types/cli-color": "^0.3.29",
     "@types/config": "0.0.34",
     "@types/lodash": "^4.14.132",
-    "ava": "^1.0.1"
-  },
-  "dependencies": {
     "@types/node": "^12.0.2",
-    "cli-color": "^1.4.0",
-    "config": "^3.1.0",
+    "ava": "^1.0.1",
+    "prettier": "^1.18.2",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "cli-color": "^1.4.0",
+    "config": "^3.1.0",
+    "lodash": "^4.17.11"
   },
   "ava": {
     "files": [
